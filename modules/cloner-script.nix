@@ -38,7 +38,7 @@
       }"
       + "${
         if (builtins.length deployment.local.exclude > 0)
-        then "--exclude={${lib.concatStringsSep "," deployment.local.exclude} "
+        then "--exclude={${lib.concatStringsSep "," deployment.local.exclude}} "
         else ""
       }"
       + "${deployment.local.dir}/* "
