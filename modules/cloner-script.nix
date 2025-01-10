@@ -30,7 +30,7 @@
             )
             + (
               if deployment.remote.user.password == null && deployment.remote.user.keyfile == null
-              then "--rsh=\"${cfg.packages.openssh}/bin/ssh\" "
+              then "--rsh=\"${cfg.packages.openssh}/bin/ssh -o 'StrictHostKeyChecking=no'\" "
               else ""
             )
           )
