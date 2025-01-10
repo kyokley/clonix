@@ -38,7 +38,11 @@
       }"
       + "${
         if (builtins.length deployment.local.exclude > 0)
-        then "--exclude={${lib.concatStringsSep "," deployment.local.exclude} "
+        then with lib; pipe deployment.local.exclude [
+          (map (p: "--exclude=${p}"))
+          (concatStringsSep " ")
+          (prepend: "${prepend} ")
+        ]
         else ""
       }"
       + "${deployment.local.dir}/* "
