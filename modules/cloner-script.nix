@@ -28,6 +28,11 @@
               then "-e \"${cfg.packages.openssh}/bin/ssh -i ${deployment.remote.user.keyfile}\" "
               else ""
             )
+            + (
+              if deployment.remote.user.password == null && deployment.remote.user.keyfile == null
+              then "--rsh=\"${cfg.packages.openssh}/bin/ssh\" "
+              else ""
+            )
           )
         else ""
       }"
