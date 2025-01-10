@@ -36,6 +36,7 @@
         OnUnitActiveSec = ifNotNull deployment.timer.OnUnitActiveSec;
         OnUnitInactiveSec = ifNotNull deployment.timer.OnUnitInactiveSec;
         OnCalendar = ifNotNull deployment.timer.OnCalendar;
+        Persistent = ifNotNull deployment.timer.Persistent;
         Unit = "clonix@${generateDeploymentHash deployment}.service";
       };
     };

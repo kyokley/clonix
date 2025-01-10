@@ -76,6 +76,11 @@
               default = null;
               description = "OnUnitInactiveSec following systemd definitions";
             };
+            Persistent = lib.mkOption {
+              type = lib.types.nullOr lib.types.bool;
+              default = null;
+              description = "When activated, it triggers the service immediately if it missed the last start time";
+            };
           };
         });
       };
