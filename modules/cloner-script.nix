@@ -51,6 +51,7 @@
         then "${deployment.remote.user.name}@${deployment.remote.ipOrHostname}:${deployment.targetDir} "
         else "${deployment.targetDir} "
       }"
+      + "${if deployment.should-propagate-file-deletion then "--delete " else ""}"
   );
 
   uniqueRsyncCmd = (
