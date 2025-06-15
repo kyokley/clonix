@@ -124,6 +124,11 @@
             };
           });
       };
+      should-propagate-file-deletion = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "pass `--delete` to `rsync`; when file is deleted on `source`, also delete backed up file in `remote`";
+      };
     };
   };
 in {
