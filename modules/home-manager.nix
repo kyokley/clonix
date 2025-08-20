@@ -29,7 +29,7 @@
         OnUnitActiveSec = ifNotNull deployment.timer.OnUnitActiveSec;
         OnUnitInactiveSec = ifNotNull deployment.timer.OnUnitInactiveSec;
         OnCalendar = ifNotNull deployment.timer.OnCalendar;
-        Unit = "clonix@${generateDeploymentHash deployment}.service";
+        Unit = "clonix@${generateDeploymentHash deployment}-${deployment.deploymentName}.service";
         Persistent = ifNotNull deployment.timer.Persistent;
       };
       Install.WantedBy = ["timers.target"];
