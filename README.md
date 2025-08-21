@@ -10,13 +10,13 @@ If you dont want to read all this and just skip to how to use it, go to the `Usa
 
 They are a way to run rsync at a specific time by using a systemd timer and a systemd service. Its pretty much like a declarative [syncthing](https://syncthing.net/) of sorts!
 
-You can declare your deployments by adding them to a list with an attrset with them. They can be either remote deployments or local sync deployments. E.g.:
+You can declare your deployments by adding them to a list with an attrset with them. They can be either remote deployments or source sync deployments. E.g.:
 
 ```nix
 deployments = [{
     #...
-    local.dir = "/path/to/abspath"; # This needs to be a string, because if it is of the path type itll be on the /nix/store instead of actually being where you want.
-    local.exclude = [ "/path/to/abspath" ];
+    source.dir = "/path/to/abspath"; # This needs to be a string, because if it is of the path type itll be on the /nix/store instead of actually being where you want.
+    source.exclude = [ "/path/to/abspath" ];
     targetDir = "/path/to/other/abspath";
 }];
 ```
@@ -29,7 +29,7 @@ rsync -avh /path/to/abspath/* /path/to/other/abspath
 
 ## Remote
 
-You can also remotely deploy your rsync folders through SSH by specifying the user, machine, and password or keyfile that you want to use 
+You can also remotely deploy your rsync folders through SSH by specifying the user, machine, and password or keyfile that you want to use
 
 ```nix
 deployments = [{
@@ -128,7 +128,7 @@ services.clonix.enable = true;
 service.clonix.deployments = [
   {
     deploymentName = "amogus";
-    local.dir = "/path/to/abspath";
+    source.dir = "/path/to/abspath";
     targetDir = "/path/to/abspath";
     remote.enable = true;
     remote.user.name = "root";
@@ -136,7 +136,7 @@ service.clonix.deployments = [
   }
   {
     deploymentName = "sussy";
-    local.dir = "/path/to/abspath";
+    source.dir = "/path/to/abspath";
     targetDir = "/path/to/abspath";
     remote.enable = true;
     remote.user.name = "momoga";
@@ -146,8 +146,8 @@ service.clonix.deployments = [
   }
   {
     deploymentName = "baus";
-    local.dir = /path/to/abspath;
-    local.exclude = ["/path/to/abspath" "/path/to/abspath"];
+    source.dir = /path/to/abspath;
+    source.exclude = ["/path/to/abspath" "/path/to/abspath"];
     targetDir = "/path/to/abspath";
     remote.enable = true;
     remote.user.name = "momoga";

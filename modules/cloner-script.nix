@@ -37,15 +37,15 @@
         else ""
       }"
       + "${
-        if (builtins.length deployment.local.exclude > 0)
-        then with lib; pipe deployment.local.exclude [
+        if (builtins.length deployment.source.exclude > 0)
+        then with lib; pipe deployment.source.exclude [
           (map (p: "--exclude=${p}"))
           (concatStringsSep " ")
           (prepend: "${prepend} ")
         ]
         else ""
       }"
-      + "${deployment.local.dir}/* "
+      + "${deployment.source.dir}/* "
       + "${
         if deployment.remote.enable == true
         then "${deployment.remote.user.name}@${deployment.remote.ipOrHostname}:${deployment.targetDir} "
@@ -56,10 +56,10 @@
 
   uniqueRsyncCmd = (
     deployment: ''
-      if [ "$1"  == "${generateDeploymentHash deployment}" ] ; then 
+      if [ "$1"  == "${generateDeploymentHash deployment}" ] ; then
 
         ${generateProperRsyncCmd deployment}
-      
+
       fi''
   );
 in

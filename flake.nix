@@ -70,7 +70,7 @@
           services.clonix.deployments = [
             {
               deploymentName = "testing_deployment";
-              local.dir = "${nodes.sender.users.users.tester.home}/testingfiles";
+              source.dir = "${nodes.sender.users.users.tester.home}/testingfiles";
               targetDir = "${nodes.reciever.users.users.tester.home}/testingfiles";
               timer.enable = false;
               timer.OnBootSec = "1";

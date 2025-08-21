@@ -11,14 +11,14 @@
     "clonix@${generateDeploymentHash deployment}-${deployment.deploymentName}" = {
       enable = true;
       unitConfig = {
-        Description = "Clonix for ${deployment.deploymentName}: local: ${deployment.local.dir}, target: ${deployment.targetDir}";
+        Description = "Clonix for ${deployment.deploymentName}: source: ${deployment.source.dir}, target: ${deployment.targetDir}";
         Wants = "network-online.target";
         After = "network-online.target";
       };
 
       serviceConfig = {
         User = "root";
-        WorkingDirectory = deployment.local.dir;
+        WorkingDirectory = deployment.source.dir;
         ExecStart = "${import ./cloner-script.nix {inherit cfg pkgs lib generateDeploymentHash;}}/bin/clonix-main ${generateDeploymentHash deployment}";
       };
     };

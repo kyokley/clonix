@@ -10,13 +10,13 @@
         default = null;
         description = "The deployments tag name";
       };
-      local = lib.mkOption {
+      source = lib.mkOption {
         type = lib.types.submodule (_: {
           options = {
             dir = lib.mkOption {
               type = lib.types.str;
               default = null;
-              description = "Path that will be used as the local directory";
+              description = "Path that will be used as the source directory";
             };
             exclude = lib.mkOption {
               type = lib.types.listOf lib.types.str;
@@ -144,7 +144,7 @@ in {
       Declare a list of deployments.
     '';
     example = lib.literalExpression ''
-      [{ deploymentName = "amogus"; local.dir = /path/to/abspath; targetDir = /path/to/abspath; remote.enable = true; remote.user = "root"; remote.ipOrHostname = "192.168.1.1"}]
+      [{ deploymentName = "amogus"; source.dir = /path/to/abspath; targetDir = /path/to/abspath; remote.enable = true; remote.user = "root"; remote.ipOrHostname = "192.168.1.1"}]
     '';
   };
   packages = lib.mkOption {

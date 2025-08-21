@@ -10,7 +10,7 @@
   generateService = deployment: {
     "clonix@${generateDeploymentHash deployment}-${deployment.deploymentName}" = {
       Unit = {
-        Description = "Clonix for ${deployment.deploymentName}: local: ${deployment.local.dir}, target: ${deployment.targetDir}";
+        Description = "Clonix for ${deployment.deploymentName}: source: ${deployment.source.dir}, target: ${deployment.targetDir}";
         Documentation = "man:clonix(1)";
       };
 
